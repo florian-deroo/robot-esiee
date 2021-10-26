@@ -11,7 +11,7 @@ BUMPER_RIGHT        	EQU     0x01
 
 SWITCH_1				EQU 	0x40
 
-; blinking frequency
+; durée du wait
 DUREE   			EQU     0x002FFFFF
 
 
