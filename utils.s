@@ -1,4 +1,4 @@
-SYSCTL_PERIPH_GPIO EQU	0x400FE108	; SYSCTL_RCGC2_R (p291 datasheet de lm3s9b92.pdf)
+SYSCTL_PERIPH_GPIO EQU	0x400FE108
 	
 		AREA    |.text|, CODE, READONLY
 		ENTRY
@@ -8,7 +8,7 @@ SYSCTL_PERIPH_GPIO EQU	0x400FE108	; SYSCTL_RCGC2_R (p291 datasheet de lm3s9b92.p
 PORT_INIT
 
 	ldr r8, = SYSCTL_PERIPH_GPIO
-	mov r0, #0x38 ; Activation de tous les périphériques nécessaire avec l'adresse 0x38
+	mov r0, #0x38 ; Activation de tous les pÃ©riphÃ©riques nÃ©cessaire avec l'adresse 0x38
 	str r0, [r8]
 
 	nop
