@@ -63,9 +63,9 @@ CHECK_RIGHT
 
 		ldr r5, = GPIO_PORTE_BASE + (BUMPER_RIGHT<<2)  ;; @data Register = @base + (mask<<2)
 		ldr r4, [r5]
-        CMP r4,#0x00
+        	CMP r4,#0x00
 		
-        BNE WAIT_BOTH_BUMPER_ACTIVE
+       	 	BNE WAIT_BOTH_BUMPER_ACTIVE
 		
 		PUSH {LR}
 		BL MOTEUR_DROIT_ARRIERE
@@ -74,10 +74,10 @@ CHECK_RIGHT
 
 wait_left
 
-        ldr r5, = GPIO_PORTE_BASE + (BUMPER_LEFT<<2)  ;; @data Register = @base + (mask<<2)
+        	ldr r5, = GPIO_PORTE_BASE + (BUMPER_LEFT<<2)  ;; @data Register = @base + (mask<<2)
 		ldr r3, [r5]
-        CMP r3,#0x00
-        BNE wait_left
+        	CMP r3,#0x00
+        	BNE wait_left
 		
 		PUSH {LR}
 		BL LED_BOTH_ON
@@ -85,12 +85,13 @@ wait_left
 		BX LR
 
 
+
 WAIT_BOTH_BUMPER_ACTIVE
 		
-		ldr r5, = GPIO_PORTE_BASE + (BUMPER_LEFT<<2)  ;; @data Register = @base + (mask<<2)
+		ldr r5, = GPIO_PORTE_BASE + (BUMPER_LEFT<<2)
 		ldr r10, [r5]
-        CMP r10,#0x00
-        BNE CHECK_RIGHT
+		CMP r10,#0x00
+		BNE CHECK_RIGHT
 		
 		PUSH {LR}
 		BL MOTEUR_GAUCHE_ARRIERE
@@ -99,10 +100,10 @@ WAIT_BOTH_BUMPER_ACTIVE
 		
 wait_right
 
-        ldr r5, = GPIO_PORTE_BASE + (BUMPER_RIGHT<<2)  ;; @data Register = @base + (mask<<2)
+		ldr r5, = GPIO_PORTE_BASE + (BUMPER_RIGHT<<2)
 		ldr r11, [r5]
-        CMP r11,#0x00
-        BNE wait_right
+		CMP r11,#0x00
+		BNE wait_right
 		
 		PUSH {LR}
 		BL LED_BOTH_ON
