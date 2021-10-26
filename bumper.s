@@ -1,18 +1,11 @@
         AREA    |.text|, CODE, READONLY
  
-; This register controls the clock gating logic in normal Run mode
-SYSCTL_PERIPH_GPIO	EQU	0x400FE108    ; SYSCTL_RCGC2_R (p291 datasheet de lm3s9b92.pdf)
+SYSCTL_PERIPH_GPIO	EQU	0x400FE108
 
-; The GPIODATA register is the data register
 ; Les bumper sont sur la porte E
-GPIO_PORTE_BASE		EQU	0x40024000		; GPIO Port E (APB) base: 0x4002.4000 (p416 datasheet de lm3s9B92.pdf)
-
-; Digital enable register
-; To use the pin as a digital input or output, the corresponding GPIODEN bit must be set.
-GPIO_O_DEN          EQU	0x0000051C  ; GPIO Digital Enable (p437 datasheet de lm3s9B92.pdf)
-
-; Pul_up
-GPIO_I_PUR			EQU	0x00000510  ; GPIO Pull-Up (p432 datasheet de lm3s9B92.pdf)
+GPIO_PORTE_BASE		EQU	0x40024000
+GPIO_O_DEN          	EQU	0x0000051C
+GPIO_I_PUR			EQU	0x00000510  
 
 BUMPER_LEFT			EQU	0x02
 BUMPER_RIGHT        		EQU	0x01
