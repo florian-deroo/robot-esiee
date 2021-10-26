@@ -1,6 +1,7 @@
 ; The GPIODATA register is the data register
 ; Les LED sont sur la porte F
-GPIO_PORTF_BASE		EQU		0x40025000	; GPIO Port F (APB) base: 0x4002.5000 (p416 datasheet de lm3s9B92.pdf)
+GPIO_PORTF_BASE		EQU		0x40025000	; 
+GPIO Port F (APB) base: 0x4002.5000 (p416 datasheet de lm3s9B92.pdf)
 
 ; configure the corresponding pin to be an output
 ; all GPIO pins are inputs by default
