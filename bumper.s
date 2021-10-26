@@ -4,6 +4,7 @@
 SYSCTL_PERIPH_GPIO	EQU	0x400FE108    ; SYSCTL_RCGC2_R (p291 datasheet de lm3s9b92.pdf)
 
 ; The GPIODATA register is the data register
+; Les bumper sont sur la porte E
 GPIO_PORTE_BASE		EQU	0x40024000		; GPIO Port E (APB) base: 0x4002.4000 (p416 datasheet de lm3s9B92.pdf)
 
 ; Digital enable register
@@ -14,7 +15,7 @@ GPIO_O_DEN          EQU	0x0000051C  ; GPIO Digital Enable (p437 datasheet de lm3
 GPIO_I_PUR			EQU	0x00000510  ; GPIO Pull-Up (p432 datasheet de lm3s9B92.pdf)
 
 BUMPER_LEFT			EQU	0x02
-BUMPER_RIGHT        EQU	0x01
+BUMPER_RIGHT        		EQU	0x01
 BUMPER_BOTH			EQU	0x03
 
 
@@ -55,7 +56,7 @@ BUMPER_INIT
         BX LR
        
 ; ####################################################################
-; FONCTIONNEMENT DE CETTE PARTIE DÉCRITE PAR LE SCHÉMA DANS LE RAPPORT
+; FONCTIONNEMENT DE CETTE PARTIE DÃ‰CRITE PAR LE SCHÃ‰MA DANS LE RAPPORT
 ; ####################################################################
 
 CHECK_RIGHT
