@@ -1,21 +1,11 @@
-; The GPIODATA register is the data register
 ; Les LED sont sur la porte F
-GPIO_PORTF_BASE		EQU		0x40025000	; 
-GPIO Port F (APB) base: 0x4002.5000 (p416 datasheet de lm3s9B92.pdf)
+GPIO_PORTF_BASE		EQU		0x40025000
 
-; configure the corresponding pin to be an output
-; all GPIO pins are inputs by default
-GPIO_O_DIR   		EQU 	0x00000400  ; GPIO Direction (p417 datasheet de lm3s9B92.pdf)
+GPIO_O_DIR   		EQU 	0x00000400  
+GPIO_O_DR2R   		EQU 	0x00000500
+GPIO_O_DEN  		EQU 	0x0000051C 
 
-; The GPIODR2R register is the 2-mA drive control register
-; By default, all GPIO pins have 2-mA drive.
-GPIO_O_DR2R   		EQU 	0x00000500  ; GPIO 2-mA Drive Select (p428 datasheet de lm3s9B92.pdf)
-
-; Digital enable register
-; To use the pin as a digital input or output, the corresponding GPIODEN bit must be set.
-GPIO_O_DEN  		EQU 	0x0000051C  ; GPIO Digital Enable (p437 datasheet de lm3s9B92.pdf)
-
-; Broches select
+; Adresses des broches 4 et 5
 BROCHE4				EQU		0x10		; led gauche
 BROCHE5				EQU		0x20		; led droite
 BROCHE4_5			EQU		0x30		; led1 & led2 sur broche 4 et 5
