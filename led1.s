@@ -32,24 +32,24 @@ BROCHE4_5			EQU		0x30		; led1 & led2 sur broche 4 et 5
  
 LED_BOTH_INIT
 
-		;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^CONFIGURATION LED
+	;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^CONFIGURATION LED
 
         ldr r7, = GPIO_PORTF_BASE+GPIO_O_DIR    ;; 1 Pin du portF en sortie (broche 4 : 00010000)
         ldr r0, = BROCHE4_5 	
         str r0, [r7]
 		
-		ldr r7, = GPIO_PORTF_BASE+GPIO_O_DEN	;; Enable Digital Function 
+	ldr r7, = GPIO_PORTF_BASE+GPIO_O_DEN	;; Enable Digital Function 
         ldr r0, = BROCHE4_5		
         str r0, [r7]
 		
-		ldr r7, = GPIO_PORTF_BASE+GPIO_O_DR2R	;; Choix de l'intensité de sortie (2mA)
+	ldr r7, = GPIO_PORTF_BASE+GPIO_O_DR2R	;; Choix de l'intensité de sortie (2mA)
         ldr r0, = BROCHE4_5			
         str r0, [r7]
 		     		
-		ldr r7, = GPIO_PORTF_BASE + (BROCHE4_5<<2)  ;; @data Register = @base + (mask<<2) ==> LED1
-		;vvvvvvvvvvvvvvvvvvvvvvvFin configuration LED
+	ldr r7, = GPIO_PORTF_BASE + (BROCHE4_5<<2)  ;; @data Register = @base + (mask<<2) ==> LED1
+	;vvvvvvvvvvvvvvvvvvvvvvvFin configuration LED
 	
-		BX	LR	; //FIN initialisation d'init
+	BX	LR	; //FIN initialisation d'init
 			
 			
 LED_BOTH_ON
