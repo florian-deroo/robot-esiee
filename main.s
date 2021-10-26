@@ -1,8 +1,13 @@
 		AREA    |.text|, CODE, READONLY
  
 ; The GPIODATA register is the data register
-GPIO_PORTD_BASE			EQU		0x40007000		; GPIO Port D (APB) base: 0x4000.7000 (p416 datasheet de lm3s9B92.pdf)
-GPIO_PORTE_BASE 		EQU     0x40024000; GPIO Port E (APB) base: 0x4002.4000 (p416 datasheet de lm3s9B92.pdf)
+; Les switch sont sur la porte D
+GPIO_PORTD_BASE			EQU		0x40007000		
+; GPIO Port D (APB) base: 0x4000.7000 (p416 datasheet de lm3s9B92.pdf)
+
+; Les bumper sont sur la porte E
+GPIO_PORTE_BASE 		EQU     0x40024000
+; GPIO Port E (APB) base: 0x4002.4000 (p416 datasheet de lm3s9B92.pdf)
 	
 BUMPER_LEFT             EQU     0x02
 BUMPER_RIGHT        	EQU     0x01
@@ -38,18 +43,18 @@ DUREE   			EQU     0x002FFFFF
 		IMPORT WAIT_BOTH_BUMPER_ACTIVE
 
 __main	
-;Initialisation de tous les composants nécessaires
+;Initialisation de tous les composants nÃ©cessaires
 		BL PORT_INIT
 		BL LED_BOTH_INIT
 		BL BUMPER_INIT
 		BL SWITCH_INIT
 		BL MOTEUR_INIT  
 
-;Attente appuie sur le switch 1 pour démarrer
+;Attente appuie sur le switch 1 pour dÃ©marrer
 WAIT_START
 		ldr r5, = GPIO_PORTD_BASE + (SWITCH_1<<2)
 		ldr r0, [r5]
-        CMP r0,#0x00
+        	CMP r0,#0x00
 		BNE WAIT_START
 
 		; Allumer les moteurs
@@ -69,16 +74,16 @@ loop
 		BL WAIT_BOTH_BUMPER_ACTIVE
 		POP {LR}
 	
-retry ; Utile si jamais il y a une collision pendant le déplacement
+retry ; Utile si jamais il y a une collision pendant le dÃ©placement
 		
-		; Faire reculer le robot (si les deux bumpers ont été activés
+		; Faire reculer le robot (si les deux bumpers ont Ã©tÃ© activÃ©s
 		BL	MOTEUR_DROIT_ARRIERE
 		BL	MOTEUR_GAUCHE_ARRIERE
 		
 		BL	WAIT
 		BL	WAIT
 		
-		; Tourner à droite de 90°
+		; Tourner Ã  droite de 90Â°
 		BL	MOTEUR_GAUCHE_AVANT
 		BL  LED_RIGHT_ON
 		
@@ -92,19 +97,19 @@ retry ; Utile si jamais il y a une collision pendant le déplacement
 		BL	MOTEUR_GAUCHE_AVANT
 		BL	WAIT
 		
-		; Vérifie si un des deux bumper est touché pendant le déplacement
+		; VÃ©rifie si un des deux bumper est touchÃ© pendant le dÃ©placement
 		PUSH {LR}
 		BL	CHECK_COLLISIONS
 		POP {LR}
 		
 		BL	WAIT
 		
-		; Vérifie si un des deux bumper est touché pendant le déplacement
+		; VÃ©rifie si un des deux bumper est touchÃ© pendant le dÃ©placement
 		PUSH {LR}
 		BL	CHECK_COLLISIONS
 		POP {LR}
 		
-		; Tourner à gauche
+		; Tourner Ã  gauche
 		
 		BL  LED_LEFT_ON
 		BL	MOTEUR_GAUCHE_ARRIERE 
@@ -112,7 +117,7 @@ retry ; Utile si jamais il y a une collision pendant le déplacement
 		BL	WAIT
 		BL	WAIT
 		
-		; Reprendre les instructions du départ (le robot avance et attend de toucher avec ses bumper)
+		; Reprendre les instructions du dÃ©part (le robot avance et attend de toucher avec ses bumper)
 		b	loop
 
 		;; Boucle d'attente
@@ -120,22 +125,22 @@ WAIT
 		ldr r1, =0xAFFFFF 
 wait1	
 		subs r1, #1
-        bne wait1
+        	bne wait1
 		
 		BX	LR
 
 		NOP
 
-; Vérifie si un des deux bumper est touché pendant le déplacement
+; VÃ©rifie si un des deux bumper est touchÃ© pendant le dÃ©placement
 CHECK_COLLISIONS
 		ldr r5, = GPIO_PORTE_BASE + (BUMPER_RIGHT<<2)
 		ldr r12, [r5]
-        CMP r12,#0x00
+        	CMP r12,#0x00
 		BEQ retry
 		
 		ldr r5, = GPIO_PORTE_BASE + (BUMPER_LEFT<<2)
 		ldr r12, [r5]
-        CMP r12,#0x00
+        	CMP r12,#0x00
 		BEQ retry
 		
 		BX LR
