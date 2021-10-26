@@ -2,8 +2,8 @@
 
 ; Les SWITCH sont sur la porte D
 GPIO_PORTD_BASE		EQU		0x40007000        
-GPIO_O_DEN			EQU     0x0000051C  ; GPIO Digital Enable (p437 datasheet de lm3s9B92.pdf)
-GPIO_I_PUR			EQU     0x00000510  ; GPIO Pull-Up (p432 datasheet de lm3s9B92.pdf)
+GPIO_O_DEN			EQU     0x0000051C 
+GPIO_I_PUR			EQU     0x00000510 
 
 SWITCH_1			EQU     0x40
 
