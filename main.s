@@ -1,13 +1,10 @@
 		AREA    |.text|, CODE, READONLY
  
-; The GPIODATA register is the data register
 ; Les switch sont sur la porte D
 GPIO_PORTD_BASE			EQU		0x40007000		
-; GPIO Port D (APB) base: 0x4000.7000 (p416 datasheet de lm3s9B92.pdf)
 
 ; Les bumper sont sur la porte E
 GPIO_PORTE_BASE 		EQU     0x40024000
-; GPIO Port E (APB) base: 0x4002.4000 (p416 datasheet de lm3s9B92.pdf)
 	
 BUMPER_LEFT             EQU     0x02
 BUMPER_RIGHT        	EQU     0x01
